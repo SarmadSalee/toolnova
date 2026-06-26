@@ -5,21 +5,23 @@ import { FeaturedTools } from "@/components/home/featured-tools"
 import { TrendingTools } from "@/components/home/trending-tools"
 import { Benefits } from "@/components/home/benefits"
 import { FaqSection } from "@/components/home/faq-section"
-import { Newsletter } from "@/components/home/newsletter"
 import { PopularSearches } from "@/components/home/popular-searches"
+import { AdBanner, AdInline, AdPopup } from "@/components/ui/ad"
 
 export default function HomePage() {
   return (
     <>
+      <AdPopup />
       <Hero />
       <Stats />
+      <AdBanner />
       <CategoriesSection />
       <FeaturedTools />
+      <AdInline />
       <TrendingTools />
       <Benefits />
       <PopularSearches />
       <FaqSection />
-      <Newsletter />
     </>
   )
 }

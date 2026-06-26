@@ -1,10 +1,11 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
-import { ChevronRight, Clock, Star, TrendingUp } from "lucide-react"
+import { ChevronRight, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { tools } from "@/data/tools"
 import { Icon } from "@/components/ui/icon"
 import Badge from "@/components/ui/badge"
+import { AdSidebar, AdPopup } from "@/components/ui/ad"
 import type { FaqItem } from "@/types"
 
 interface ToolLayoutProps {
@@ -70,21 +71,13 @@ function RelatedTools({ relatedTools }: { relatedTools?: string[] }) {
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium text-foreground truncate">{tool.name}</p>
-              <p className="text-xs text-muted-foreground truncate">{tool.description}</p>
+              <p className="text-xs text-muted-foreground line-clamp-2">{tool.description}</p>
             </div>
             <ChevronRight className="size-4 shrink-0 text-muted-foreground group-hover:text-foreground transition-colors" />
           </Link>
         ))}
       </div>
     </aside>
-  )
-}
-
-function AdPlaceholder() {
-  return (
-    <div className="flex min-h-[250px] items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/50">
-      <p className="text-sm text-muted-foreground">Advertisement</p>
-    </div>
   )
 }
 
@@ -102,7 +95,7 @@ export default function ToolLayout({
     <>
       <ToolSchema title={title} description={description} faqItems={faqItems} />
 
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl overflow-x-hidden px-4 py-8 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
             {breadcrumbItems.map((item, index) => (
@@ -153,8 +146,8 @@ export default function ToolLayout({
           </div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
-          <div className="min-w-0">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="min-w-0 overflow-hidden">
             <article className="space-y-8">
               <section className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
                 {children}
@@ -184,7 +177,8 @@ export default function ToolLayout({
 
           <aside className="space-y-8">
             <RelatedTools relatedTools={relatedTools} />
-            <AdPlaceholder />
+            <AdSidebar />
+            <AdPopup />
           </aside>
         </div>
       </div>

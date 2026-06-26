@@ -120,11 +120,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-hidden">
           <ThemeProvider>
           <SearchProvider>
             <Navbar />
-            <main className="flex-1 pt-16">{children}</main>
+            <main className="flex-1 pt-16 overflow-x-hidden">{children}</main>
             <Footer />
           </SearchProvider>
         </ThemeProvider>
