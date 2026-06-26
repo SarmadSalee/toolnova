@@ -100,6 +100,22 @@ export default function RootLayout({
         <link rel="icon" href="/Gemini_Generated_Image_l8kes8l8kes8l8ke-removebg-preview.png" sizes="any" />
         <meta name="google-site-verification" content="google62e58447a8585980" />
         <meta name="google-site-verification" content="ajocOz_q5hwWtTvPGGbk54xi9Zla1HUdOUrDLgWyodo" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQLJTN4ZDM" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BQLJTN4ZDM');
+          `,
+        }} />
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TT5XMCM9');`,
+        }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -123,6 +139,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden">
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT5XMCM9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <ThemeProvider>
           <SearchProvider>
             <Navbar />
