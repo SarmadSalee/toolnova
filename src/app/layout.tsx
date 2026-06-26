@@ -98,6 +98,8 @@ export default function RootLayout({
     >
       <head>
         <link rel="icon" href="/Gemini_Generated_Image_l8kes8l8kes8l8ke-removebg-preview.png" sizes="any" />
+        <meta name="google-site-verification" content="google62e58447a8585980" />
+        <meta name="google-site-verification" content="ajocOz_q5hwWtTvPGGbk54xi9Zla1HUdOUrDLgWyodo" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
