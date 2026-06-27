@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${tool.name} - Free Online Tool`,
       description: tool.description,
       type: "website",
-      url: `https://paperhouse.com${tool.path}`,
+      url: `https://toolnova-delta.vercel.app${tool.path}`,
       siteName: "PaperHouse Tools",
     },
     twitter: {
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: tool.description,
     },
     alternates: {
-      canonical: `https://paperhouse.com${tool.path}`,
+      canonical: `https://toolnova-delta.vercel.app${tool.path}`,
     },
   }
 }

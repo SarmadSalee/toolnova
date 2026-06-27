@@ -4,7 +4,7 @@ import { categories } from "@/data/categories"
 import { blogPosts } from "@/data/blog"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://toolnova.app"
+  const baseUrl = "https://toolnova-delta.vercel.app"
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1.0 },

@@ -41,11 +41,11 @@ export const metadata: Metadata = {
   authors: [{ name: "ToolNova" }],
   creator: "ToolNova",
   publisher: "ToolNova",
-  metadataBase: new URL("https://toolnova.app"),
+  metadataBase: new URL("https://toolnova-delta.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://toolnova.app",
+    url: "https://toolnova-delta.vercel.app",
     siteName: "ToolNova",
     title: "ToolNova - The Modern Toolkit for Everyone",
     description:
@@ -123,14 +123,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "ToolNova",
-              url: "https://toolnova.app",
+              url: "https://toolnova-delta.vercel.app",
               description:
                 "500+ free online tools for developers, designers, marketers, students, and businesses.",
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "https://toolnova.app/search?q={search_term_string}",
+                  urlTemplate: "https://toolnova-delta.vercel.app/search?q={search_term_string}",
                 },
                 "query-input": "required name=search_term_string",
               },
