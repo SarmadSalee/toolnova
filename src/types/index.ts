@@ -11,6 +11,8 @@ export interface Tool {
   popularity?: number
   tags: string[]
   publishedAt: string
+  content?: BlogSection[]
+  faq?: FaqItem[]
 }
 
 export type ToolCategory =
@@ -65,6 +67,11 @@ export interface FaqItem {
   answer: string
 }
 
+export interface BlogSection {
+  title: string
+  content: string
+}
+
 export interface BlogPost {
   id: string
   title: string
@@ -76,6 +83,8 @@ export interface BlogPost {
   readingTime: number
   tags: string[]
   featured?: boolean
+  content: BlogSection[]
+  faq?: FaqItem[]
 }
 
 export interface Testimonial {

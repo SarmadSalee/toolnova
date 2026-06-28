@@ -105,7 +105,7 @@ export default async function ToolPage({ params }: PageProps) {
     .slice(0, 4)
     .map((t) => t.id)
 
-  const faqItems = [
+  const faqItems = tool.faq ?? [
     {
       question: `What is ${tool.name}?`,
       answer: `${tool.name} is a free online tool that helps you ${tool.description.toLowerCase()} It's completely free to use with no registration required.`,
@@ -130,6 +130,7 @@ export default async function ToolPage({ params }: PageProps) {
         title={tool.name}
         description={tool.description}
         breadcrumbItems={breadcrumbItems}
+        content={tool.content}
         faqItems={faqItems}
         relatedTools={sameCategoryToolIds}
         publishedAt={tool.publishedAt}

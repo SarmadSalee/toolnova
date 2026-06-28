@@ -6,13 +6,14 @@ import { tools } from "@/data/tools"
 import { Icon } from "@/components/ui/icon"
 import Badge from "@/components/ui/badge"
 import { AdSidebar, AdPopup } from "@/components/ui/ad"
-import type { FaqItem } from "@/types"
+import type { FaqItem, BlogSection } from "@/types"
 
 interface ToolLayoutProps {
   title: string
   description: string
   breadcrumbItems: { label: string; href?: string }[]
   children: ReactNode
+  content?: BlogSection[]
   faqItems?: FaqItem[]
   relatedTools?: string[]
   publishedAt?: string
@@ -38,11 +39,32 @@ function ToolSchema({ title, description, faqItems }: { title: string; descripti
     }))
   }
 
+  const faqSchema = faqItems && faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  } : null
+
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+    </>
   )
 }
 
@@ -86,6 +108,7 @@ export default function ToolLayout({
   description,
   breadcrumbItems,
   children,
+  content,
   faqItems,
   relatedTools,
   publishedAt,
@@ -149,9 +172,43 @@ export default function ToolLayout({
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div className="min-w-0 overflow-hidden">
             <article className="space-y-8">
+              {content && content.length > 0 && (
+                <div className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
+                  <h2 className="mb-3 text-sm font-semibold text-foreground">Table of Contents</h2>
+                  <ol className="space-y-2">
+                    {content.map((section, index) => (
+                      <li key={index}>
+                        <a
+                          href={`#tool-section-${index}`}
+                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground min-h-[44px]"
+                        >
+                          <ChevronRight className="size-3 shrink-0" />
+                          {section.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
               <section className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
                 {children}
               </section>
+
+              {content && content.length > 0 && (
+                <div className="max-w-none space-y-8">
+                  {content.map((section, index) => (
+                    <section key={index} id={`tool-section-${index}`} className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
+                      <h2 className="text-xl font-bold text-foreground mb-4 sm:text-2xl">{section.title}</h2>
+                      <div className="text-sm leading-relaxed text-muted-foreground sm:text-base space-y-4">
+                        {section.content.split("\n").filter(Boolean).map((paragraph, pIdx) => (
+                          <p key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                        ))}
+                      </div>
+                    </section>
+                  ))}
+                </div>
+              )}
 
               {faqItems && faqItems.length > 0 && (
                 <section className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8">
@@ -160,14 +217,15 @@ export default function ToolLayout({
                   </h2>
                   <div className="divide-y divide-border">
                     {faqItems.map((item, index) => (
-                      <div key={index} className="py-4 first:pt-0 last:pb-0">
-                        <h3 className="text-base font-semibold text-foreground">
+                      <details key={index} className="group py-4 first:pt-0 last:pb-0 open:bg-muted/30 -mx-6 px-6">
+                        <summary className="flex cursor-pointer items-center justify-between text-base font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                           {item.question}
-                        </h3>
-                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                          <ChevronRight className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
+                        </summary>
+                        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                           {item.answer}
                         </p>
-                      </div>
+                      </details>
                     ))}
                   </div>
                 </section>
